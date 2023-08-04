@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opciones - Bloqueador de Ocio</title>
+  <!-- Agregar Bootstrap CSS -->
+  <link rel="stylesheet" href="/assets/stackpath.bootstrapcdn.com_bootstrap_4.3.1_css_bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container mt-4">
+    <h1 class="mb-4">Configuración del Bloqueador</h1>
+    <form>
+      <div class="form-group">
+        <label for="sites">Páginas a bloquear:</label>
+        <textarea id="sites" rows="4" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="start">Hora de inicio laboral:</label>
+        <input type="number" id="start" min="0" max="23" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="end">Hora de fin laboral:</label>
+        <input type="number" id="end" min="0" max="23" class="form-control">
+      </div>
+      <button type="button" id="save" class="btn btn-primary">Guardar</button>
+    </form>
+  </div>
+  <!-- Agregar Bootstrap JS y jQuery localmente -->
+  <script src="/assets/code.jquery.com_jquery-3.3.1.slim.min.js"></script>
+  <script src="/assets/cdnjs.cloudflare.com_ajax_libs_popper.js_1.14.7_umd_popper.min.js"></script>
+  <script src="/assets/stackpath.bootstrapcdn.com_bootstrap_4.3.1_js_bootstrap.min.js"></script>
+  <script src="options.js"></script>
+</body>
+
+</html>

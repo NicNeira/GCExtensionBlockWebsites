@@ -1,0 +1,30 @@
+{
+  "name": "BlockWeb",
+  "version": "1",
+  "permissions": [
+    "declarativeNetRequest",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*/*"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "./assets/img/block16x.png",
+    "32": "/assets/img/block32x.png",
+    "128": "/assets/img/block128x.png"
+  }
+}
