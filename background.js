@@ -23,11 +23,12 @@ function evaluateBlockingRules() {
 
       // Crear nuevas reglas solo si está dentro del horario laboral
       const addRules = isWorkingTime() ? blockedSites.map((site, index) => {
+        console.log("Agregando regla con ID:", index + 1000);
         return {
-          "id": index + 1,
+          "id": index + 1000,
           "priority": 1,
           "action": { "type": "block" },
-          "condition": { "urlFilter": `||${site}`, "resourceTypes": ["main_frame"] }
+          "condition": { "urlFilter": `${site}`, "resourceTypes": ["main_frame"] }
         };
       }) : [];
 
@@ -36,6 +37,7 @@ function evaluateBlockingRules() {
         removeRuleIds: removeRuleIds,
         addRules: addRules
       }, () => {
+        console.log("Reglas existentes:", existingRules);
         console.log('Reglas actualizadas');
       });
     });
