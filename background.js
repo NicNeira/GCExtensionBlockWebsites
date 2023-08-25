@@ -1,7 +1,9 @@
 function evaluateBlockingRules() {
   chrome.storage.sync.get(["blockedSites", "workingHours"], function (data) {
     const blockedSites = data.blockedSites || [];
-    const workingHours = data.workingHours || { start: 9, end: 17 };
+    const workingHours = data.workingHours || { start: "09:00", end: "18:00" };
+    const [startHour, startMinute] = workingHours.start.split(":").map(Number);
+    const [endHour, endMinute] = workingHours.end.split(":").map(Number);
 
     console.log("Sitios para bloquear:", blockedSites);
     console.log(
@@ -13,24 +15,30 @@ function evaluateBlockingRules() {
 
     function isWorkingTime() {
       const now = new Date();
+      const currentHour = now.getHours();
+      const currentMinute = now.getMinutes();
       return (
-        now.getHours() >= workingHours.start &&
-        now.getHours() < workingHours.end
+        (currentHour > startHour ||
+          (currentHour === startHour && currentMinute >= startMinute)) &&
+        (currentHour < endHour ||
+          (currentHour === endHour && currentMinute < endMinute))
       );
     }
 
     // Obtener las reglas existentes para eliminarlas
     chrome.declarativeNetRequest.getDynamicRules(function (existingRules) {
-      let removeRuleIds = [];
+      // Eliminar todas las reglas existentes
+      const removeRuleIds = existingRules.map((rule) => rule.id);
       let addRules = [];
 
       if (isWorkingTime()) {
         console.log("Dentro del horario laboral, bloqueando...");
         // Crear nuevas reglas para bloquear los sitios durante el horario laboral
         addRules = blockedSites.map((site, index) => {
-          console.log("Agregando regla con ID:", index + 1000);
+          const id = site.hashCode();
+          console.log("Agregando regla con ID:", id);
           return {
-            id: index + 1000,
+            id: id,
             priority: 1,
             action: { type: "block" },
             condition: { urlFilter: `${site}`, resourceTypes: ["main_frame"] },
@@ -41,7 +49,7 @@ function evaluateBlockingRules() {
           "Fuera del horario laboral, eliminando todas las reglas existentes"
         );
         // Si está fuera del horario laboral, elimina todas las reglas existentes
-        removeRuleIds = existingRules.map((rule) => rule.id);
+        // removeRuleIds = existingRules.map((rule) => rule.id);
       }
 
       // Actualizar reglas (eliminar las existentes y agregar las nuevas)
@@ -51,8 +59,15 @@ function evaluateBlockingRules() {
           addRules: addRules,
         },
         () => {
-          console.log("Reglas existentes:", existingRules);
-          console.log("Reglas actualizadas");
+          if (chrome.runtime.lastError) {
+            console.error(
+              "Error al actualizar reglas:",
+              chrome.runtime.lastError
+            );
+          } else {
+            console.log("Reglas existentes:", existingRules);
+            console.log("Reglas actualizadas");
+          }
         }
       );
     });
@@ -68,3 +83,14 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
     evaluateBlockingRules();
   }
 });
+
+// funcion hasCode para generar un numero aleatorio
+String.prototype.hashCode = function () {
+  let hash = 0;
+  for (let i = 0; i < this.length; i++) {
+    const char = this.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash |= 0; // Convertir a un número entero de 32 bits
+  }
+  return Math.abs(hash); // Utilizar el valor absoluto para asegurar que sea positivo
+};

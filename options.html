@@ -32,10 +32,6 @@
         border-color: #007bff;
         color: #ffffff;
       }
-
-      /* .dark-mode button {
-        background-color: #444;
-      } */
     </style>
   </head>
 
@@ -64,26 +60,23 @@
         </div>
         <div class="form-group">
           <label for="start">Hora de inicio laboral:</label>
-          <input
-            type="number"
-            id="start"
-            min="0"
-            max="23"
-            class="form-control"
-          />
+          <input type="time" id="start" class="form-control" />
         </div>
         <div class="form-group mb-3">
           <label for="end">Hora de fin laboral:</label>
-          <input type="number" id="end" min="0" max="23" class="form-control" />
+          <input type="time" id="end" class="form-control" />
         </div>
-        <button type="button" id="save" class="btn btn-primary">Guardar</button>
+
+        <button type="button" id="save" class="btn btn-primary">Save</button>
       </form>
+      <div class="d-flex aligns-items-center justify-content-center">
+        <span id="status"></span>
+      </div>
     </div>
     <!-- Agregar Bootstrap JS y jQuery localmente -->
     <script src="./assets/code.jquery.com_jquery-3.3.1.min.js"></script>
     <script
       src="./assets/cdn.jsdelivr.net_npm_bootstrap@5.3.1_dist_js_bootstrap.bundle.min.js"
-      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
     <script src="options.js"></script>
