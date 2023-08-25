@@ -24,3 +24,9 @@ Si encuentras algún problema:
 - Verifica que los archivos JavaScript y HTML estén correctamente vinculados y no contengan errores de sintaxis.
 
 Recuerda que cualquier cambio en los archivos de la extensión requerirá que la recargues. Puedes hacer esto haciendo clic en el botón "Recargar" (ícono de flecha circular) en la página de Extensiones junto a tu extensión.
+
+## Proximos Pasos
+
+- [ ] Agregar un botón de "On/Off" para prender apagar el bloqueo de sitios web.
+- [ ] Corregir error al momento de terminar el tiempo de bloqueo. Ya que no deja de bloquear los sitios web.
+- [ ] En vez de una pagina de opciones, agregar un popup o modal como otras extensiones para configurar los sitios web y el tiempo de bloqueo.
