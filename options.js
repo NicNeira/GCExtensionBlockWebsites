@@ -37,11 +37,11 @@ function saveOptions() {
       const status = document.getElementById("status");
       console.log("Status element:", status);
       if (chrome.runtime.lastError) {
-        status.textContent = "Ocurrió un error al guardar las opciones.";
-        status.className = "badge text-white bg-danger fs-4";
+        status.textContent = "Error saving";
+        status.className = "badge text-white bg-danger fs-6";
       } else {
-        status.textContent = "Opciones guardadas correctamente.";
-        status.className = "badge text-white bg-success fs-4";
+        status.textContent = "Succesufully saved";
+        status.className = "badge text-white bg-success fs-6";
       }
 
       // Luego de 3 segundos, borra el mensaje
