@@ -10,9 +10,6 @@ function loadOptions() {
   });
 }
 
-// Cargar las opciones cuando se abre la página
-loadOptions();
-
 // Función para guardar las opciones
 function saveOptions() {
   console.log("El botón Guardar fue presionado"); // Agregamos el log aquí
@@ -54,3 +51,5 @@ function saveOptions() {
 
 // Evento de clic para guardar las opciones
 document.getElementById("save").addEventListener("click", saveOptions);
+// Cargar las opciones cuando se abre la página
+loadOptions();

@@ -28,5 +28,6 @@ Recuerda que cualquier cambio en los archivos de la extensión requerirá que la
 ## Proximos Pasos
 
 - [ ] Agregar un botón de "On/Off" para prender apagar el bloqueo de sitios web.
-- [ ] Corregir error al momento de terminar el tiempo de bloqueo. Ya que no deja de bloquear los sitios web.
-- [ ] En vez de una pagina de opciones, agregar un popup o modal como otras extensiones para configurar los sitios web y el tiempo de bloqueo.
+- [✅] Corregir error al momento de terminar el tiempo de bloqueo. Ya que no deja de bloquear los sitios web.
+- [✅] En vez de una pagina de opciones, agregar un popup o modal como otras extensiones para configurar los sitios web y el tiempo de bloqueo.
+- [ ] La funcion evaluateBlockingRules() en background.js se ejecuta 2 veces al momento de actualizar la extension, Corregir.

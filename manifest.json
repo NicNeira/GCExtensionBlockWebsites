@@ -1,8 +1,14 @@
 {
   "name": "BlockWeb",
   "version": "1",
-  "permissions": ["declarativeNetRequest", "storage"],
-  "host_permissions": ["*://*/*"],
+  "permissions": [
+    "declarativeNetRequest",
+    "storage",
+    "alarms"
+  ],
+  "host_permissions": [
+    "*://*/*"
+  ],
   "declarative_net_request": {
     "rule_resources": [
       {
